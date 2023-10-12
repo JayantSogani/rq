@@ -6,7 +6,7 @@ public class CreateOrSingleGetEmployeeResponse {
 
     private String status;
 
-    private CreateEmployeeRequest data;
+    private EmployeeWrapper data;
 
     public CreateOrSingleGetEmployeeResponse() {
     }
@@ -19,11 +19,11 @@ public class CreateOrSingleGetEmployeeResponse {
         this.status = status;
     }
 
-    public CreateEmployeeRequest getData() {
+    public EmployeeWrapper getData() {
         return data;
     }
 
-    public void setData(CreateEmployeeRequest data) {
+    public void setData(EmployeeWrapper data) {
         this.data = data;
     }
 

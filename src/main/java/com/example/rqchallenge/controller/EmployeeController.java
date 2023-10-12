@@ -21,13 +21,13 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public ResponseEntity<List<Employee>> getAllEmployees() throws IOException {
-        List<Employee> allEmployee = employeeService.getAllEmployee();
+        final List<Employee> allEmployee = employeeService.getAllEmployee();
         return ResponseEntity.status(HttpStatus.OK).body(allEmployee);
     }
 
     @Override
     public ResponseEntity<List<Employee>> getEmployeesByNameSearch(String searchString) {
-        List<Employee> employees = employeeService.getEmployeeByName(searchString);
+        final List<Employee> employees = employeeService.getEmployeeByName(searchString);
         return ResponseEntity.status(HttpStatus.OK).body(employees);
     }
 
@@ -39,19 +39,19 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public ResponseEntity<Integer> getHighestSalaryOfEmployees() {
-        Integer maxSalary = employeeService.getHighestSalary();
+        final Integer maxSalary = employeeService.getHighestSalary();
         return ResponseEntity.status(HttpStatus.OK).body(maxSalary);
     }
 
     @Override
     public ResponseEntity<List<String>> getTopTenHighestEarningEmployeeNames() {
-        List<String> topTenHighestEmployeeNames = employeeService.getTopTenHighestEmployeeNames();
+        final List<String> topTenHighestEmployeeNames = employeeService.getTopTenHighestEmployeeNames();
         return ResponseEntity.status(HttpStatus.OK).body(topTenHighestEmployeeNames);
     }
 
     @Override
     public ResponseEntity<Employee> createEmployee(Map<String, Object> employeeInput) {
-        Employee employee = employeeService.createEmployee(employeeInput);
+        final Employee employee = employeeService.createEmployee(employeeInput);
         return ResponseEntity.status(HttpStatus.CREATED).body(employee);
     }
 

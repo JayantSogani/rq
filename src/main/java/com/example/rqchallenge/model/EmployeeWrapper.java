@@ -1,13 +1,15 @@
 package com.example.rqchallenge.model;
 
-public class CreateEmployeeRequest {
+import java.util.Objects;
+
+public class EmployeeWrapper {
 
     private int id;
     private String name;
     private int salary;
     private int age;
 
-    public CreateEmployeeRequest() {
+    public EmployeeWrapper() {
     }
 
     public String getName() {
@@ -40,5 +42,18 @@ public class CreateEmployeeRequest {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeWrapper wrapper = (EmployeeWrapper) o;
+        return id == wrapper.id && salary == wrapper.salary && age == wrapper.age && Objects.equals(name, wrapper.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, salary, age);
     }
 }

@@ -2,7 +2,7 @@ package com.example.rqchallenge.util;
 
 import com.example.rqchallenge.exception.DefaultFallbackException;
 import com.example.rqchallenge.exception.TooManyRequestsException;
-import com.example.rqchallenge.model.CreateEmployeeRequest;
+import com.example.rqchallenge.model.EmployeeWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -33,11 +33,11 @@ public class ExternalApiHandler {
                 .bodyToMono(response);
         return responseMono.block();
     }
-    public <T> T post(String uri, CreateEmployeeRequest employee, Class<T> response) {
+    public <T> T post(String uri, EmployeeWrapper employee, Class<T> response) {
         final Mono<T> responseMono = webClient
                 .post()
                 .uri(uri)
-                .body(Mono.just(employee), CreateEmployeeRequest.class)
+                .body(Mono.just(employee), EmployeeWrapper.class)
                 .retrieve()
                 .onStatus(
                         HttpStatus::is4xxClientError,

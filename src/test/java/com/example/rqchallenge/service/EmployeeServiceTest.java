@@ -73,19 +73,19 @@ public class EmployeeServiceTest {
         input.put("salary", 123);
         input.put("age", 23);
 
-        final CreateEmployeeRequest request = EmployeeTransformer.transform(input);
+        final EmployeeWrapper request = EmployeeTransformer.transform(input);
 
         final CreateOrSingleGetEmployeeResponse response = new CreateOrSingleGetEmployeeResponse();
         response.setStatus("success");
         response.setData(request);
 
-        when(externalApiHandler.post(eq(Constants.CREATE_EMPLOYEE_URL), any(CreateEmployeeRequest.class), eq(CreateOrSingleGetEmployeeResponse.class)))
+        when(externalApiHandler.post(eq(Constants.CREATE_EMPLOYEE_URL), any(EmployeeWrapper.class), eq(CreateOrSingleGetEmployeeResponse.class)))
                 .thenReturn(response);
 
         Employee result = employeeService.createEmployee(input);
 
         verify(externalApiHandler, times(1))
-                .post(any(String.class), any(CreateEmployeeRequest.class), any());
+                .post(any(String.class), any(EmployeeWrapper.class), any());
 
         assertNotNull(result);
         Assertions.assertEquals(result.getEmployeeName(), "test");
@@ -190,9 +190,9 @@ public class EmployeeServiceTest {
         input.put("salary", 123);
         input.put("age", 23);
 
-        final CreateEmployeeRequest request = EmployeeTransformer.transform(input);
+        final EmployeeWrapper request = EmployeeTransformer.transform(input);
 
-        when(externalApiHandler.post(eq(Constants.CREATE_EMPLOYEE_URL), any(CreateEmployeeRequest.class), eq(CreateOrSingleGetEmployeeResponse.class)))
+        when(externalApiHandler.post(eq(Constants.CREATE_EMPLOYEE_URL), any(EmployeeWrapper.class), eq(CreateOrSingleGetEmployeeResponse.class)))
                 .thenReturn(null);
 
         RecordCreationException exception = assertThrows(RecordCreationException.class, () -> {

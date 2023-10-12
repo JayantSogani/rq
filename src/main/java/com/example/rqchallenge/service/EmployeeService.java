@@ -25,7 +25,7 @@ public class EmployeeService implements IEmployeeService {
 
     private final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
     @Autowired
-    ExternalApiHandler apiHandler;
+    private ExternalApiHandler apiHandler;
     @Override
     public List<Employee> getAllEmployee() {
         final GetEmployeeResponse response = apiHandler.get(EMPLOYEE_URL, GetEmployeeResponse.class);
@@ -44,7 +44,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Employee createEmployee(Map<String, Object> employeeMap) {
-        final CreateEmployeeRequest employeeRequest = EmployeeTransformer.transform(employeeMap);
+        final EmployeeWrapper employeeRequest = EmployeeTransformer.transform(employeeMap);
         final CreateOrSingleGetEmployeeResponse response = apiHandler.post(CREATE_EMPLOYEE_URL, employeeRequest, CreateOrSingleGetEmployeeResponse.class);
         if (null == response) {
             logger.debug("create employee is failed for the {}", employeeRequest.getName());

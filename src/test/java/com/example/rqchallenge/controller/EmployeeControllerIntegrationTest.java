@@ -75,7 +75,7 @@ public class EmployeeControllerIntegrationTest {
     public void testCreateEmployee() throws Exception {
         String requestJson = "{\"name\":\"test\",\"salary\":123,\"age\":23}";
         // Mock the service response
-        CreateEmployeeRequest cer = new CreateEmployeeRequest();
+        EmployeeWrapper cer = new EmployeeWrapper();
         cer.setName("test");
         cer.setSalary(123);
         cer.setAge(23);
@@ -98,7 +98,7 @@ public class EmployeeControllerIntegrationTest {
     @Test
     public void testGetEmployeeId() throws Exception {
         // Mock the service response
-        CreateEmployeeRequest cer = new CreateEmployeeRequest();
+        EmployeeWrapper cer = new EmployeeWrapper();
         cer.setName("test");
         cer.setSalary(123);
         cer.setAge(23);
